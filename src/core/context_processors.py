@@ -1,5 +1,5 @@
 from django.conf import settings
-
+# This file is for flowbite cofiguration so it is dynamic and it renders its components placed in vendor folder
 
 def vendor_files(request):
     static_dir = settings.BASE_DIR / "static"
