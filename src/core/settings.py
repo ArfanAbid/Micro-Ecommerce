@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+from core.env import config
 from os import getenv
 from dotenv import load_dotenv
 
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2e1v^8)n=3tqdx@jom-w7v^1+wv@0y!vbynt0rn&$1057%1^)s'
+SECRET_KEY = config("DJANGO_SECRET_KEY",default=None)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,7 +89,7 @@ DATABASES = {
 
 '''
 
-# used another method it by loading env variable using python script and then we can use out env variable also here i used DB url
+# used another method it by loading env variable using python script and then we can use our env variable also here I used DB url
 '''
 DATABASES = {
   'default': {
@@ -104,7 +105,7 @@ DATABASES = {
   }
 }
 '''
-
+from .db import DATABASES # or write all the logic here of db 
 
 
 # Password validation
