@@ -12,6 +12,7 @@
 
 </head>
 
+
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
     {% include 'base/navbar.html' %}
@@ -24,7 +25,9 @@
 
     {% include 'base/footer.html' %}
     {% include 'base/js.html' %}
-     
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script> {% endcomment %}
+
 </body>
+
 
 </html>
