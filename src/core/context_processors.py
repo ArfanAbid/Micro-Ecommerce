@@ -4,7 +4,7 @@ from django.conf import settings
 def vendor_files(request):
     static_dir = settings.BASE_DIR / "static"
     vendor_dir = static_dir / "vendor"
-    js_files = [x.relative_to(static_dir) for x in vendor_dir.glob("**/*.*.js")]
+    js_files = [x.relative_to(static_dir) for x in vendor_dir.glob("**/*.js")]
     css_files = [x.relative_to(static_dir) for x in vendor_dir.glob("**/*.css")]
     print("JS Files:", js_files)  # Debug print
     print("CSS Files:", css_files)  # Debug print
