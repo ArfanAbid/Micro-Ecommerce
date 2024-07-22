@@ -1,5 +1,5 @@
 .DS_Store
-
+local-cdn/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -248,7 +248,6 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
-
 # TernJS port file
 .tern-port
 

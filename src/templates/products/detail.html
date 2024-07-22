@@ -35,59 +35,23 @@
       Buy Now
     </button>
 
-  
+    {% if object.image %}
     <div class="grid gap-4">
       <div>
         <img
           class="h-auto max-w-full rounded-lg"
-          src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg"
-          alt=""
+          src="{{ object.image.url }}"
+          alt="{{ object.name }}"
         />
-      </div>
-      <div class="grid grid-cols-5 gap-4">
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            class="h-auto max-w-full rounded-lg"
-            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-            alt=""
-          />
-        </div>
-      </div>
+      </div>  
     </div>
+    {% endif %}  
     
      {% if form %}
     <div>
       <h3 class="text-2xl ">Update form</h3>
 
-      <form action="" method="POST">
+      <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p}}
 
         <button type="submit" class="btn-submit">Submit</button>

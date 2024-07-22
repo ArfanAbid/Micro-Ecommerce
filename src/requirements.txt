@@ -12,6 +12,8 @@ django==5.0.7
     # via
     #   -r src/requirements/requirements.in
     #   dj-database-url
+pillow==10.4.0
+    # via -r src/requirements/requirements.in
 psycopg2==2.9.9
     # via -r src/requirements/requirements.in
 python-decouple==3.8
