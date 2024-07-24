@@ -2,6 +2,11 @@ from typing import Iterable
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.core.files.storage import FileSystemStorage
+
+
+PROTECTED_MEDIA_ROOT=settings.PROTECTED_MEDIA_ROOT
+protected_storage=FileSystemStorage(location=str(PROTECTED_MEDIA_ROOT))
 
 # Create your models here.
 
@@ -34,4 +39,14 @@ class Product(models.Model):
             
     def __str__(self):
         return self.name
-            
+    
+def handle_product_attachment_upload(instance,filename):
+    return f"products/{instance.product.handle}/attachments/{filename}"
+    
+class ProductAttachment(models.Model):
+    product=models.ForeignKey(Product,on_delete=models.CASCADE) 
+    file=models.FileField(upload_to=handle_product_attachment_upload, storage=protected_storage)
+    is_free=models.BooleanField(default=False)
+    active=models.BooleanField(default=True)
+    timestamp=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
