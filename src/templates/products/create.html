@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="" method="POST" class="max-w-sm mx-auto">
+<form action="" method="POST" class="max-w-sm mx-auto" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p}}
 

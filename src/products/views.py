@@ -31,11 +31,16 @@ def product_detail_view(request,handle=None):
         is_owner=obj.user == request.user
     context={"object":obj}
     if is_owner:
+        print(request.FILES)  # Add this line to debug
         form = ProductUpdateForms(request.POST or None, request.FILES or None ,instance=obj)
         if form.is_valid():
             obj=form.save(commit=False)
             obj.save()
+            print(obj.image.path)  # Print the saved file path
+            print("Form saved successfully")
             # return redirect('/products/create/')
-
+        else:
+            print(form.errors)
         context['form']=form    
     return render(request,'products/detail.html',context)
+

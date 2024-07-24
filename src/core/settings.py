@@ -78,7 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-'''
+
 #Database
 #https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -89,7 +89,7 @@ DATABASES = {
     }
 }
 
-'''
+
 
 # used another method it by loading env variable using python script and then we can use our env variable also here I used DB url
 '''
@@ -107,7 +107,7 @@ DATABASES = {
   }
 }
 '''
-from .db import DATABASES # or write all the logic here of db 
+# from .db import DATABASES # or write all the logic here of db 
 
 
 # Password validation
@@ -155,8 +155,15 @@ STATIC_ROOT=BASE_DIR.parent / " local-cdn" / "static"
 
 MEDIA_URL="media/"
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+'''
+Created By : Arfan Abid
+Github : https://github.com/ArfanAbid
+LinkedIn : https://www.linkedin.com/in/arfan-abid-152217270/
+
+'''
