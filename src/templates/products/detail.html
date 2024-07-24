@@ -1,5 +1,4 @@
-{% extends "base.html" %} 
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div class="flex flex-col lg:flex-row">
   <div class="w-full md:w-3/4 space-y-4">
@@ -20,20 +19,30 @@
       toil, and deploy changes with ease, with a complete audit trail for every
       change.
     </p>
+
+      {% include 'products/attachment-table.html' with attachments=attachments is_owner=is_owner %} 
   </div>
 
   <div class="w-full md:w-1/4 space-y-4">
     <!--  side bar  -->
-    <div class="flex items-baseline text-gray-900 dark:text-white">
-      <span class="text-3xl font-semibold">$</span>
-      <span class="text-5xl font-extrabold tracking-tight">49</span>
+
+    <div>
+      {% if is_owner %}
+      <p>You own this product</p>
+      {% else %}
+      <div class="flex items-baseline text-gray-900 dark:text-white">
+        <span class="text-3xl font-semibold">$</span>
+        <span class="text-5xl font-extrabold tracking-tight">49</span>
+      </div>
+
+      <button
+        type="button"
+        class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+      >
+        Buy Now
+      </button>
     </div>
-    <button
-      type="button"
-      class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-    >
-      Buy Now
-    </button>
+    {% endif %}
 
     {% if object.image %}
     <div class="grid gap-4">
@@ -43,13 +52,11 @@
           src="{{ object.image.url }}"
           alt="{{ object.name }}"
         />
-      </div>  
+      </div>
     </div>
-    {% endif %}  
-    
-     {% if form %}
+    {% endif %} {% if form %}
     <div>
-      <h3 class="text-2xl ">Update form</h3>
+      <h3 class="text-2xl">Update form</h3>
 
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p}}

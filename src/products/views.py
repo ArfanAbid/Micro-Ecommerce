@@ -26,24 +26,33 @@ def product_list_view(request):
     return render(request,'products/list.html',{"object_list":object_list})
 
 
-def product_detail_view(request,handle=None):
+def product_manage_detail_view(request,handle=None):
     obj=get_object_or_404(Product, handle=handle)
-    is_owner=False
+    is_manager=False
     if request.user.is_authenticated:
-        is_owner=obj.user == request.user
+        is_manager=obj.user == request.user
     context={"object":obj}
-    if is_owner:
+    if is_manager:
         print(request.FILES)  # Add this line to debug
         form = ProductUpdateForms(request.POST or None, request.FILES or None ,instance=obj)
         if form.is_valid():
             obj=form.save(commit=False)
             obj.save()
-            print(obj.image.path)  # Print the saved file path
-            print("Form saved successfully")
             # return redirect('/products/create/')
         else:
             print(form.errors)
         context['form']=form    
+    return render(request,'products/detail.html',context)
+
+
+def product_detail_view(request,handle=None):
+    obj=get_object_or_404(Product, handle=handle)
+    attachments=ProductAttachment.objects.filter(product=obj)
+    # attachments=obj.productattachment_set.all()
+    is_owner=False
+    if request.user.is_authenticated:
+        is_owner=obj.user == request.user # verify ownership
+    context={"object":obj,"is_owner":is_owner,'attachments':attachments}
     return render(request,'products/detail.html',context)
 
 
