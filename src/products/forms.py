@@ -45,7 +45,7 @@ class ProductAttachmentForms(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        for field in ['is_free','active']:
+        for field in ['file','name']:
             self.fields[field].widget.attrs['class'] = input_css_class
 
 
@@ -55,7 +55,7 @@ ProductAttachmentModelFormSet = modelformset_factory(
     form=ProductAttachmentForms,
     fields=['file','name','is_free','active'],
     extra=0,
-    can_delete=False
+    can_delete=True
     ) 
 ProductAttachmentInlineFormSet = inlineformset_factory(
     Product,
@@ -64,5 +64,5 @@ ProductAttachmentInlineFormSet = inlineformset_factory(
     formset=ProductAttachmentModelFormSet,
     fields=['file','name','is_free','active'],
     extra=0, 
-    can_delete=False
+    can_delete=True
     ) 

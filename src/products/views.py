@@ -39,14 +39,23 @@ def product_manage_detail_view(request,handle=None):
     formset=ProductAttachmentInlineFormSet(request.POST or None, request.FILES or None, queryset=attachments)
     
     if form.is_valid() and formset.is_valid():
-        instance=form.save(commit=False)
+        instance=form.save(commit=False)    
         instance.save()
         formset.save(commit=False)
         for _form in formset:
-            attachments_obj=_form.save(commit=False)
-            attachments_obj.product=instance
-            attachments_obj.save()
-
+            id_delete=_form.cleaned_data.get('DELETE')
+            try:
+                attachments_obj=_form.save(commit=False)
+            except:
+                attachments_obj=None    
+            if id_delete:
+                if attachments_obj is not None:     
+                    if attachments_obj.pk:
+                        attachments_obj.delete()
+            else:
+                if attachments_obj is not None:     
+                    attachments_obj.product=instance
+                    attachments_obj.save()
         return redirect(obj.get_manage_url())    
     context['form']=form   
     context['formset']=formset  
@@ -81,3 +90,4 @@ def product_attachment_download_view(request,handle=None,pk=None):
     
     return response
 
+   
