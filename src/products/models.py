@@ -35,6 +35,10 @@ class Product(models.Model):
             
         super().save(*args, **kwargs)
     
+    @property
+    def display_price(self):
+        return self.price
+    
     def get_absolute_url(self):
         return f"/products/{self.handle}/"
     

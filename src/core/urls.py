@@ -24,7 +24,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_view),
-    path('products/',include("products.urls"))
+    path('products/',include("products.urls")),
+    path('purchases/',include("purchases.urls")), 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
