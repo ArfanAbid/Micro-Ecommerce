@@ -1,4 +1,4 @@
-django>=5.0.0
+django>=5.0.8,<5.1
 psycopg2
 dj-database-url # Use Database URLs in your Django Application.
 python-decouple # # Strict separation of settings from code.
